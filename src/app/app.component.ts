@@ -7,6 +7,7 @@ import { Account, Role } from './_models';
 export class AppComponent {
     Role = Role;
     account: Account;
+    darkMode = false;
 
     constructor(private accountService: AccountService) {
         this.accountService.account.subscribe(x => this.account = x);
@@ -15,4 +16,12 @@ export class AppComponent {
     logout() {
         this.accountService.logout();
     }
+    toggleDarkMode() {
+        this.darkMode =!this.darkMode;
+        if (this.darkMode) {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
+      }
 }
