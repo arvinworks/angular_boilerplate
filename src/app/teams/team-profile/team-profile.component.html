@@ -1,14 +1,16 @@
-<div *ngIf="team">
-    <h1 >{{ team.name }}'s Profile</h1>
-    <p><strong>Location:</strong> {{ team.location }}</p>
-    <p><strong>Coach:</strong> {{ team.coach }}</p>
-    <p><strong>Region:</strong> {{ team.region }}</p>
-    <p><strong>Manager:</strong> {{ team.manager }}</p>
-    <h2>Players</h2>
-    <ul>
-      <li *ngFor="let player of team.players">
-        {{ player.name }} ({{ player.role }})
-      </li>
-    </ul>
-  </div>
-  
+<div *ngIf="team; else loading">
+  <h1>{{ team.name }}'s Profile</h1>
+  <p><strong>Location:</strong> {{ team.location }}</p>
+  <p><strong>Coach:</strong> {{ team.coach }}</p>
+  <p><strong>Region:</strong> {{ team.region }}</p>
+  <p><strong>Manager:</strong> {{ team.manager }}</p>
+  <h2>Players</h2>
+  <ul>
+    <li *ngFor="let player of team.players">
+      {{ player.name }} ({{ player.role }})
+    </li>
+  </ul>
+</div>
+<ng-template #loading>
+  <p>Loading team data...</p>
+</ng-template>

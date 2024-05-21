@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let team of teams">
-      <td><a (click)="viewTeam(team.teamId)" href="https://liquipedia.net/dota2/Team_Spirit">{{ team.name }}</a></td>
+      <td><a (click)="viewTeam(team.teamId)">{{ team.name }}</a></td>
       <td>{{ team.location }}</td>
       <td>{{ team.coach }}</td>
       <td>{{ team.region }}</td>

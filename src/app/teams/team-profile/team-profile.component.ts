@@ -19,9 +19,10 @@ export class TeamProfileComponent implements OnInit {
   ngOnInit(): void {
     const teamId = this.route.snapshot.paramMap.get('teamId');
     if (teamId) {
-      this.teamService.getById(teamId).subscribe(team => {
-        this.team = team;
-      });
+      this.teamService.getById(teamId).subscribe(
+        team => this.team = team,
+        error => console.error('Error fetching team data:', error)
+      );
     }
   }
 }
