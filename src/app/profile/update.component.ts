@@ -64,6 +64,7 @@ export class UpdateComponent implements OnInit {
             });
     }
 
+    /*
     onDelete() {
         if (confirm('Are you sure?')) {
             this.deleting = true;
@@ -73,5 +74,5 @@ export class UpdateComponent implements OnInit {
                     this.alertService.success('Account deleted successfully', { keepAfterRouteChange: true });
                 });
         }
-    }
+    }*/
 }

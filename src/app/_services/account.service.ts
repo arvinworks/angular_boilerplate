@@ -95,7 +95,17 @@ export class AccountService {
                 return account;
             }));
     }
+
+    deactivate(id: string) {
+        return this.http.put(`${baseUrl}/deactivate/${id}`, 'isActive')
+            .pipe(finalize(() => {
+                // auto logout if the logged in account was deleted
+                if (id === this.accountValue.id)
+                    this.logout();
+            }));
+    }
     
+    /*
     delete(id: string) {
         return this.http.delete(`${baseUrl}/${id}`)
             .pipe(finalize(() => {
@@ -103,7 +113,7 @@ export class AccountService {
                 if (id === this.accountValue.id)
                     this.logout();
             }));
-    }
+    }*/
 
     // helper methods
 

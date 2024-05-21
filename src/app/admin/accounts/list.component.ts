@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
             .subscribe(accounts => this.accounts = accounts);
     }
 
-    deleteAccount(id: string) {
+    /*deleteAccount(id: string) {
         const account = this.accounts.find(x => x.id === id);
         account.isDeleting = true;
         this.accountService.delete(id)
@@ -25,4 +25,5 @@ export class ListComponent implements OnInit {
                 this.accounts = this.accounts.filter(x => x.id !== id) 
             });
     }
+    */
 }
