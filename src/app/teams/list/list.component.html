@@ -1,0 +1,32 @@
+<h1>Teams</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Create Team</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Coach</th>
+      <th>Region</th>
+      <th>Manager</th>
+      <th>Players</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let team of teams">
+      <td><a (click)="viewTeam(team.teamId)" href="https://liquipedia.net/dota2/Team_Spirit">{{ team.name }}</a></td>
+      <td>{{ team.location }}</td>
+      <td>{{ team.coach }}</td>
+      <td>{{ team.region }}</td>
+      <td>{{ team.manager }}</td>
+      <td>{{ team.players?.length }}</td>
+      <td>
+        <a [routerLink]="['edit', team.teamId]" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteTeam(team.teamId)" class="btn btn-sm btn-danger" [disabled]="team.isDeleting">
+                    <span *ngIf="team.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!team.isDeleting">Delete</span>
+                </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

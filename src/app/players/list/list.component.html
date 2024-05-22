@@ -1,0 +1,34 @@
+<h1>Players</h1>
+<a routerLink="/players/add" class="btn btn-sm btn-success mb-2">Add Player</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Nationality</th>
+      <th>Born</th>
+      <th>Region</th>
+      <th>Role</th>
+      <th>In-Game Name</th>
+      <th>Team</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td><a (click)="viewPlayer(player.playerId)">{{ player.name }}</a></td>
+      <td>{{ player.nationality }}</td>
+      <td>{{ player.born }}</td>
+      <td>{{ player.region }}</td>
+      <td>{{ player.role }}</td>
+      <td>{{ player.ingameName }}</td>
+      <td>{{ player.team?.name }}</td>
+      <td>
+        <a [routerLink]="['edit', player.playerId]" class="btn btn-sm btn-primary mr-1">Edit</a>
+        <button (click)="deletePlayer(player.playerId)" class="btn btn-sm btn-danger" [disabled]="player.isDeleting">
+          <span *ngIf="player.isDeleting" class="spinner-border spinner-border-sm"></span>
+          <span *ngIf="!player.isDeleting">Delete</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -4,20 +4,20 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width:30%">Name</th>
-            <th style="width:30%">Email</th>
-            <th style="width:30%">Role</th>
-            <th style="width:30%">Status</th>
-            <th style="width:10%"></th>
+            <th style="width:30%" bgcolor="white" >Name</th>
+            <th style="width:30%"bgcolor="white">Email</th>
+            <th style="width:30%"bgcolor="white">Role</th>
+            <th style="width:30%"bgcolor="white">Status</th>
+            <th style="width:10%"bgcolor="white"></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let account of accounts">
-            <td>{{account.title}} {{account.firstName}} {{account.lastName}}</td>
-            <td>{{account.email}}</td>
-            <td>{{account.role}}</td>
-            <td>{{ account.isActive ? 'Active' : 'Inactive' }}</td>
-            <td style="white-space: nowrap">
+            <td bgcolor="white">{{account.title}} {{account.firstName}} {{account.lastName}}</td>
+            <td bgcolor="white">{{account.email}}</td>
+            <td bgcolor="white">{{account.role}}</td>
+            <td bgcolor="white">{{ account.isActive ? 'Active' : 'Inactive' }}</td>
+            <td bgcolor="white" style="white-space: nowrap">
                 <a routerLink="edit/{{account.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 <!--<button (click)="deleteAccount(account.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
                     <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></span>

@@ -8,6 +8,8 @@ export class AppComponent {
     Role = Role;
     account: Account;
     darkMode = false;
+    showTeams = false; // Add the showTeams property
+    showPlayers = false;
 
     constructor(private accountService: AccountService) {
         this.accountService.account.subscribe(x => this.account = x);
@@ -23,5 +25,17 @@ export class AppComponent {
         } else {
           document.body.classList.remove('dark-mode');
         }
+      }
+
+      toggleTeams() {
+        this.showTeams = !this.showTeams;
+        // Set showPlayers to false when toggling teams
+        this.showPlayers = false;
+      }
+    
+      togglePlayers() {
+        this.showPlayers = !this.showPlayers;
+        // Set showTeams to false when toggling players
+        this.showTeams = false;
       }
 }
