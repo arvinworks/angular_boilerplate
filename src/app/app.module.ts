@@ -35,7 +35,7 @@ import { PlayerModule } from './players/player.module';
         { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+        fakeBackendProvider
         // provider used to create fake backend
         //fakeBackendProvider
     ],

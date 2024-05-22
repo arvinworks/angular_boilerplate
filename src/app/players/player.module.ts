@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { PlayerRoutingModule } from './player-routing.module';
@@ -10,7 +10,8 @@ import { AddEditPlayerComponent } from './add-edit/add-edit-players.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        PlayerRoutingModule
+        PlayerRoutingModule,
+        FormsModule
     ],
     declarations: [
         PlayerListComponent,

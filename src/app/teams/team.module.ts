@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { TeamRoutingModule } from './team-routing.module';
@@ -10,7 +10,8 @@ import { AddEditTeamComponent } from './add-edit/add-edit-team.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        TeamRoutingModule
+        TeamRoutingModule,
+        FormsModule
     ],
     declarations: [ 
         TeamListComponent,
