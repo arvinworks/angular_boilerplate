@@ -9,5 +9,6 @@
       region: string;
       manager: string;
       players: Player[];
+      teamPhotoUrl?: string;
     }
     

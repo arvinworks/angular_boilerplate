@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PlayerRoutingModule } from './player-routing.module';
 import { PlayerListComponent } from './list/list.component';
 import { AddEditPlayerComponent } from './add-edit/add-edit-players.component';
+import { PlayerProfileComponent } from './player-profile/player-profile.component';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { AddEditPlayerComponent } from './add-edit/add-edit-players.component';
     ],
     declarations: [
         PlayerListComponent,
-        AddEditPlayerComponent
+        AddEditPlayerComponent,
+        PlayerProfileComponent
     ]
 })
 export class PlayerModule { }

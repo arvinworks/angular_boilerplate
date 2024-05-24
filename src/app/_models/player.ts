@@ -9,5 +9,7 @@ export class Player {
     role: string;
     ingameName: string;
     teamId: string;
-    team: Team;
-}
+    team?: Team;
+    teamDisplayName?: string; // Renamed property for team name
+  }
+  

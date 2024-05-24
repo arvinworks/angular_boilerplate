@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../../_services/players.services';
+import { TeamService } from '../../_services/team.services';
 import { Router } from '@angular/router';
 import { Player } from '../../_models/player';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-player-list',
@@ -22,6 +24,7 @@ export class PlayerListComponent implements OnInit {
 
   constructor(
     private playerService: PlayerService,
+    private teamService: TeamService,
     private router: Router
   ) {}
 
@@ -30,14 +33,40 @@ export class PlayerListComponent implements OnInit {
   }
 
   fetchPlayers(): void {
+    this.isLoading = true;
     this.playerService.getAll().subscribe({
       next: (players) => {
         this.players = players;
         this.filteredPlayers = players;
-        this.totalPages = Math.ceil(this.filteredPlayers.length / this.pageSize);
-        this.pages = Array(this.totalPages).fill(0).map((x, i) => i + 1);
-        this.paginatePlayers();
-        this.isLoading = false;
+  
+        // Get a list of unique team IDs
+        const teamIds = [...new Set(players.map(player => player.teamId))];
+  
+        // Use forkJoin to make concurrent requests for teams
+        forkJoin(teamIds.map(teamId => this.teamService.getById(teamId))).subscribe({
+          next: (fetchedTeams) => {
+            // Map fetched teams to a lookup object for easy access by ID
+            const teamMap = fetchedTeams.reduce((acc, team) => {
+              acc[team.teamId] = team.name;
+              return acc;
+            }, {});
+  
+            // Assign team names to players using the lookup object
+            this.players.forEach(player => {
+              player.teamDisplayName = teamMap[player.teamId];
+            });
+  
+            this.filteredPlayers = this.players; // Update filtered players
+            this.totalPages = Math.ceil(this.filteredPlayers.length / this.pageSize);
+            this.pages = Array(this.totalPages).fill(0).map((x, i) => i + 1);
+            this.paginatePlayers();
+            this.isLoading = false;
+          },
+          error: (error) => {
+            console.error('Error fetching teams:', error);
+            this.isLoading = false;
+          }
+        });
       },
       error: (error) => {
         console.error('Error fetching players', error);
@@ -45,6 +74,8 @@ export class PlayerListComponent implements OnInit {
       }
     });
   }
+  
+  
 
   filterPlayers(): void {
     this.filteredPlayers = this.players.filter(player =>

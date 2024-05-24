@@ -14,15 +14,21 @@ export class TeamProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private teamService: TeamService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const teamId = this.route.snapshot.paramMap.get('teamId');
     if (teamId) {
-      this.teamService.getById(teamId).subscribe(
-        team => this.team = team,
-        error => console.error('Error fetching team data:', error)
-      );
+      this.teamService.getById(teamId).subscribe({
+        next: (team) => {
+          this.team = team;
+          console.log('Fetched team:', team); // Verify data is being fetched
+        },
+        error: (error) => {
+          console.error('Error fetching team data:', error);
+          // Handle errors here (e.g., display an error message)
+        }
+      });
     }
   }
 }

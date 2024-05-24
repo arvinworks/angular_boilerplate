@@ -5,6 +5,7 @@ import { map, finalize } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Team } from '../_models/team';
 import { Player } from '../_models/player';
+import { forkJoin } from 'rxjs';
 
 const baseUrl = `${environment.apiUrl}/teams`;
 
@@ -34,6 +35,10 @@ export class TeamService {
             }));
     }
 
+    getByIds(teamIds: string[]): Observable<Team[]> {
+        const requests = teamIds.map(teamId => this.getById(teamId));
+        return forkJoin(requests); 
+      }
     create(team: Team): Observable<Team> {
         return this.http.post<Team>(baseUrl, team);
     }
