@@ -7,6 +7,7 @@ import { PlayerListComponent } from './list/list.component';
 import { AddEditPlayerComponent } from './add-edit/add-edit-players.component';
 import { PlayerProfileComponent } from './player-profile/player-profile.component';
 
+
 @NgModule({
     imports: [
         CommonModule,

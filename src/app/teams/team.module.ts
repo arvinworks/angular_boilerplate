@@ -7,6 +7,7 @@ import { TeamListComponent } from './list/list.component';
 import { AddEditTeamComponent } from './add-edit/add-edit-team.component';
 import { TeamProfileComponent } from './team-profile/team-profile.component';
 
+
 @NgModule({
     imports: [
         CommonModule,

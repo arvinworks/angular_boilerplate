@@ -5,6 +5,5 @@
     <p><strong>Region:</strong> {{ player.region }}</p>
     <p><strong>Role:</strong> {{ player.role }}</p>
     <p><strong>In-game Name:</strong> {{ player.ingameName }}</p>
-    <p><strong>Team ID:</strong> {{ player.teamId }}</p>
+    <p><strong [routerLink]="['/teams/profile', player.teamId]">Team:</strong> {{ player.teamId }} {{ player.teamDisplayName }}</p>
   </div>
-  
